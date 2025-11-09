@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="he">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>תשלום לגישה למשחק — 50 ש״ח</title>
+  <style>
+    :root {
+      --bg: #0f1724;
+      --card: #0b1220;
+      --accent: #6ee7b7;
+      --muted: #9aa6b2;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #071027 0%, #071a2b 100%);
+      font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #e6eef7;
+      direction: rtl;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 720px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .header {
+      display:flex;
+      gap:16px;
+      align-items:center;
+    }
+    .logo {
+      width:64px; height:64px; border-radius:10px;
+      background: linear-gradient(135deg,#04293a,#03506f);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:700; font-size:22px; color:white;
+      box-shadow: inset 0 -6px 20px rgba(0,0,0,0.25);
+    }
+    h1 { margin:0; font-size:20px; }
+    p.lead { margin:6px 0 0 0; color:var(--muted); }
+    .price {
+      margin-top:18px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+    }
+    .price .left {
+      display:flex; flex-direction:column;
+    }
+    .amount {
+      font-size:28px; font-weight:700; color:var(--accent);
+    }
+    .meta { color:var(--muted); font-size:14px; margin-top:4px; }
+    .paypal-area { margin-top:20px; }
+    .support {
+      margin-top:18px;
+      font-size:13px; color:var(--muted);
+      display:flex; gap:8px; align-items:center;
+    }
+    .support a { color:var(--accent); text-decoration:none; }
+    .small-note {
+      margin-top:10px; color:#98a9b7; font-size:12px;
+    }
+    footer { margin-top:18px; text-align:center; color:rgba(255,255,255,0.05); font-size:12px; }
+    /* responsive */
+    @media (max-width:520px) {
+      .header { gap:12px; }
+      .amount { font-size:22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="pay-title">
+    <div class="header">
+      <div class="logo">משחק</div>
+      <div>
+        <h1 id="pay-title">קנה גישה למשחק</h1>
+        <p class="lead">תשלום חד-פעמי לפתיחת המשחק שנוצר עבורך.</p>
+      </div>
+    </div>
+
+    <div class="price" aria-hidden="false">
+      <div class="left">
+        <div class="amount">₪2.00</div>
+        <div class="meta">תשלום חד-פעמי — קבלת גישה למשחק</div>
+      </div>
+      <div style="text-align:left">
+        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" style="height:44px;">
+      </div>
+    </div>
+
+    <div class="paypal-area" id="paypal-button-container" aria-live="polite">
+      <!-- כאן PayPal SDK יצייר את הכפתור -->
+    </div>
+
+    <div class="small-note">לאחר סיום התשלום תועברי אוטומטית לדף המשחק. אם התהליך נקטע — ישלח/י לנו מייל ונבדוק.</div>
+
+    <div class="support">
+      <span>במקרה של תקלה/שאלה:</span>
+      <a href="mailto:pantomimagame1@gmail.com" id="supportEmail">YOUR_SUPPORT_EMAIL@example.com</a>
+    </div>
+
+    <footer>אם ברצונך אבטחה מלאה וולידציה של תשלום — מומלץ לחבר Webhook / שרת צד-בשרת. (הסבר קצר בסוף העמוד)</footer>
+  </div>
+
+  <!-- החליפי את YOUR_CLIENT_ID ב-Client ID שלך מ-PayPal -->
+
+  <script src="https://www.paypal.com/sdk/js?client-id=AazuZz8j61b15i80RzjF3qUjC5Q0JqJMG44MCHisD08ts6QcveX4MHOOEQHvRKiLIMX1IXJB0ThK2eYO&currency=ILS"></script>
+
+  <script>
+ 
+    // הגדרות — החליפי לפי הצורך
+    const AMOUNT = '2.00'; // סכום בשקלים
+    const CURRENCY = 'ILS';
+    const GAME_URL = 'https://noa-markovitz.github.io/game/game.html'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
+    const SUPPORT_EMAIL = 'pantomimagame1@gmail.com';
+   if (sessionStorage.getItem('paidForGame') === 'true') {
+    console.log("i pay");
+    
+  window.location.href = GAME_URL;
+}
+    // הצגת המייל באופן דינמי
+    document.getElementById('supportEmail').href = 'mailto:' + SUPPORT_EMAIL;
+    document.getElementById('supportEmail').textContent = SUPPORT_EMAIL;
+
+    paypal.Buttons({
+      style: {
+        shape: 'rect',
+        color: 'gold',
+        layout: 'vertical',
+        label: 'paypal'
+      },
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: AMOUNT,
+              currency_code: CURRENCY
+            },
+            description: 'גישה למשחק - תשלום חד-פעמי'
+          }],
+          application_context: {
+            brand_name: 'האתר שלי',
+            landing_page: 'NO_PREFERENCE',
+            user_action: 'PAY_NOW'
+          }
+        });
+      },
+      onApprove: function(data, actions) {
+        // לכידת התשלום (client-side)
+        return actions.order.capture().then(function(details) {
+          // כאן ניתן להציג הודעת תודה קצרה לפני המעבר
+          // אבל נבצע הפנייה ישירה לדף המשחק
+          // ניתן להעביר פרמטרים ב-querystring אם צריך (למשל: orderID)
+          const orderId = data.orderID;
+            sessionStorage.setItem('paidForGame', 'true');
+    sessionStorage.setItem('orderID', data.orderID);
+          // מפנה לדף המשחק עם מזהה הזמנה (לשימוש עתידי)
+          window.location.href = GAME_URL;
+        }).catch(function(err) {
+          // שגיאה בלכידת תשלום
+          alert('התשלום לא הושלם בהצלחה. אם הבעיה נמשכת פנו ל: ' + SUPPORT_EMAIL);
+          console.error('capture error', err);
+        });
+      },
+      onCancel: function (data) {
+        alert('התשלום בוטל. אם זקוקים לעזרה, כתבו ל' + SUPPORT_EMAIL);
+      },
+      onError: function (err) {
+        alert('אירעה שגיאה בתהליך התשלום. נסו שוב או צרו קשר ב' + SUPPORT_EMAIL);
+        console.error(err);
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+</html>

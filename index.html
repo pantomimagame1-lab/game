@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משחק פנטומימה </title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Assistant', sans-serif;
+            background: linear-gradient(135deg, #e4f1ff, #d6e2ff, #f1e4ff);
+            color: #333;
+            overflow-x: hidden;
+            text-align: center;
+            animation: fadeIn 1.5s ease;
+        }
+
+        header {
+            padding: 40px 20px;
+            animation: slideDown 1s ease;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #4a3dbf;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p.subtitle {
+            font-size: 2.5rem;
+            color: #5c4fc1;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 2rem;
+            color: #666;
+            margin-bottom: 50px;
+            animation: fadeIn 2s ease;
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .floating-icons span {
+            position: absolute;
+            display: block;
+            color: rgba(74, 61, 191, 0.15);
+            font-size: 2.5rem;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .video-container {
+            margin: 40px auto;
+            max-width: 700px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(74, 61, 191, 0.3);
+            animation: fadeInUp 1.5s ease;
+        }
+
+        iframe,
+        video {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        .buttons {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #5c4fc1, #7b68ee);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            animation: bounceIn 1.8s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(90deg, #7b68ee, #8b79ff);
+        }
+
+        footer {
+            margin-top: 80px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            animation: fadeIn 2.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="startmusic" src="./start.mp3" loop preload="auto"></audio>
+
+    <!-- אייקונים מרחפים ברקע -->
+    <div class="floating-icons">
+        <span style="left:5%; animation-delay:0s;">🎭</span>
+        <span style="left:20%; animation-delay:2s;">🎉</span>
+        <span style="left:40%; animation-delay:4s;">😂</span>
+        <span style="left:60%; animation-delay:6s;">🎬</span>
+        <span style="left:80%; animation-delay:8s;">🤩</span>
+    </div>
+
+    <header>
+        <h1>ברוכים הבאים למשחק פנטומימה!</h1>
+        <p class="subtitle">חוויה מצחיקה, מגבשת ובלתי נשכחת 🎭</p>
+        <p class="tagline">בלי מילים, רק הבעות — איזה זוג יצליח לנחש הכי הרבה תמונות?</p>
+
+    </header>
+
+    <div class="video-container">
+        <!-- אפשר להחליף לוידאו משלך -->
+        <video id="myVideo" src="game_speed.mp4" controls autoplay muted loop width="100%">
+
+
+    </div>
+
+    <div class="buttons">
+        <button class="btn" onclick="window.location.href='instructions.html'">📘 הוראות המשחק</button>
+        <button class="btn" onclick="window.location.href='payment.html'">🎮 התחל לשחק עכשיו!</button>
+    </div>
+
+    <footer>
+        <p>© משחק פנטומימה חוויתי | כל הזכויות שמורות</p>
+    </footer>
+
+    <!-- מוזיקת רקע רגועה -->
+<audio id="bgAudio" loop playsinline preload="auto">
+<source src="./start.mp3" type="audio/mpeg">
+  הדפדפן לא תומך בתגית audio.
+</audio>
+ 
+<script>
+  const audio = document.getElementById('bgAudio');
+ 
+  // ניסיון להשמיע מיד
+  audio.play().then(() => {
+    // הצליח (ייתכן שההשמעה היתה במוט)
+    console.log('Playing automatically');
+  }).catch((err) => {
+    // נחסם — נציג כפתור פשוט למשתמש
+    console.log('Autoplay blocked:', err);
+    const btn = document.createElement('button');
+    btn.textContent = 'לחצו להשמיע את הצליל';
+    btn.style.cssText = 'position:fixed;bottom:16px;right:16px;padding:10px 12px;font-size:16px;z-index:9999;';
+    btn.onclick = () => {
+      audio.play().catch(e => console.error('Play failed after user click', e));
+      btn.remove();
+    };
+    document.body.appendChild(btn);
+  });
+</script>
+</body>
+
+</html>

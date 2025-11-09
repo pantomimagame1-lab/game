@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 המנצחים הגדולים!</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+ 
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Assistant', sans-serif;
+      background: radial-gradient(circle at top, #1a144b, #261e69, #2f257c);
+      color: white;
+      overflow: hidden;
+      text-align: center;
+    }
+ 
+    .trophy {
+      width: 180px;
+      height: 180px;
+      background: url('trophy.png') no-repeat center/contain;
+      margin: 100px auto 20px;
+      animation: bounce 1.8s infinite ease-in-out;
+      filter: drop-shadow(0 0 25px gold);
+    }
+ 
+    h1 {
+      font-size: 3.5rem;
+      color: gold;
+      text-shadow: 0 0 25px #ffd700, 0 0 10px #fff;
+      animation: glow 2s infinite alternate;
+    }
+ 
+    .winner-box {
+      margin-top: 50px;
+      animation: fadeInUp 2s ease forwards;
+    }
+ 
+    .winner-name {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 10px 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideIn 1.5s ease forwards;
+    }
+ 
+    .winner-score {
+      font-size: 1.6rem;
+      color: #ffd700;
+      opacity: 0;
+      animation: fadeIn 3s ease forwards;
+      animation-delay: 1.5s;
+    }
+ 
+    .buttons {
+      margin-top: 60px;
+    }
+ 
+    .btn {
+      background: linear-gradient(90deg, #6a5acd, #836fff);
+      border: none;
+      color: white;
+      padding: 15px 40px;
+      border-radius: 20px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+ 
+    .btn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(90deg, #7b68ee, #9370db);
+      box-shadow: 0 0 25px rgba(255,255,255,0.4);
+    }
+ 
+    /* קונפטי */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      top: 0;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+ 
+    @keyframes bounce {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-15px);}
+    }
+ 
+    @keyframes glow {
+      from {text-shadow: 0 0 10px #ffd700;}
+      to {text-shadow: 0 0 30px #fff, 0 0 50px #ffd700;}
+    }
+ 
+    @keyframes slideIn {
+      to {opacity: 1; transform: translateY(0);}
+    }
+ 
+    @keyframes fadeIn {
+      to {opacity: 1;}
+    }
+ 
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+ 
+    @keyframes fall {
+      0% {transform: translateY(0) rotate(0);}
+      100% {transform: translateY(100vh) rotate(720deg);}
+    }
+</style>
+</head>
+ 
+<body>
+<h1>🏆 המנצחים!!</h1>
+ 
+  <div class="winner-box">
+<div id="winner1" class="winner-name" style="animation-delay: 1.2s;"></div>
+<div id="winnerScore" class="winner-score"></div>
+</div>
+ 
+  <div class="buttons">
+<button class="btn" onclick="window.location.href='index.html'">🏠 חזרה לעמוד הבית</button>
+</div>
+ 
+  <audio autoplay>
+<source src="victory.mp3" type="audio/mpeg">
+</audio>
+ 
+  <script>
+    // --- הצגת שמות מנצחים (נטענים מהמשחק הראשי) ---
+    const winners = sessionStorage.getItem('winner');
+ 
+    document.getElementById('winner1').textContent = `🥇 ${winners}`;
+    document.getElementById('winnerScore').textContent = `💫 כל הכבוד לכל המשתתפים!`;
+    sessionStorage.clear();
+    // --- קונפטי ---
+    const colors = ['#ffd700', '#ff69b4', '#6ad5ff', '#66bb6a', '#ffffff'];
+    for (let i = 0; i < 120; i++) {
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.width = confetti.style.height = Math.random() * 8 + 4 + 'px';
+      confetti.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      confetti.style.animationDelay = Math.random() * 2 + 's';
+      document.body.appendChild(confetti);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>משחק פנטומימה עם סינון לזוכים</title>
+  <link rel="stylesheet" href="./game.css">
+
+</head>
+
+<body>
+  <!-- כותרת למעלה לשם הזוג -->
+  <h1 id="currentTeamHeader" style="text-align:center; font-size: 3rem; margin-top: 10px; display: none;"></h1>
+
+  <!-- שכבה למעבר בין זוגות -->
+  <div id="nextTeamOverlay">
+    <div id="previous-score" class="previous-score" style="font-size: 22px; margin-top: 15px; color: #fff;"></div>
+    <h2 id="nextTeamName" style="font-size: 3rem; animation: fadeIn 1s ease;"></h2>
+    <button id="startNextTeamBtn">התחל
+      משחק</button>
+  </div>
+    <!-- שכבה למעבר בין הסבבים -->
+ <div id="nextlevel">
+    <h2 id="nextTeamName" style="font-size: 3rem; animation: fadeIn 1s ease;"> סיבוב נוסף!!</h2>
+    <p style="font-size: 3rem; animation: fadeIn 1s ease;">סבב ראשון הסתיים!!<br> נהנתם??</p>
+    <p style="font-size: 3rem; animation: fadeIn 1s ease;">מתחילים עכשיו סבב נוסף ועכשיו...<br><br> מתחלפים מי שהציג קודם עכשיו מנחש ולהפך.. בהצלחה!!</p>
+
+    <button id="startNextTeamBtn">התחל
+      משחק</button>
+  </div>
+  <!-- time out -->
+  <div id="timeOut">
+    <h2 id="timeOutText" style="font-size: 3rem; animation: fadeIn 1s ease;">Time Out / הזמן נגמר!</h2>
+    <button id="timeOutBtn" style="margin-top: 20px; padding: 15px 30px; font-size: 1.5rem; cursor: pointer;">
+      המשך לזוג הבא</button>
+  </div>
+
+  <div class="container" id="mainGameContainer">
+    <div class="left-panel">
+      <div class="image-container" id="imageContainer">
+        <div class="prompt-text" id="promptText">הוסף צוותים, בחר נושא והתחל משחק</div>
+      </div>
+      <!-- <div id="timeOut">
+        <h2 id="timeOutText" style="font-size: 3rem; animation: fadeIn 1s ease;">Time Out / הזמן נגמר!</h2>
+      </div> -->
+      <div class="timer-vertical">
+        <div class="timer-fill" id="timerFill"></div>
+      </div>
+      <div class="controls">
+        <button id="correctBtn" disabled>נכון ✅</button>
+        <button id="passBtn" disabled>עברו ⏭</button>
+        <button id="nextBtn" disabled>זוג הבא ▶️</button>
+        <button id="playSongBtn" style="display:none;">הפעל שיר ▶️</button>
+      </div>
+    </div>
+    <div class="right-panel">
+      <h2>ניהול צוותים</h2>
+      <input type="text" id="teamNameInput" placeholder="שם צוות חדש..." />
+      <button id="addTeamBtn">הוסף צוות</button>
+      <div class="teams-list" id="teamsList"></div>
+
+      <!-- <label for="categorySelect">בחר נושא:</label> -->
+      <select id="categorySelect" disabled="true">
+        <option value="objects" selected>חפצים</option>
+        <option value="songs">שירים</option>
+      </select>
+
+      <label for="roundTimeInput">זמן לסיבוב (בשניות):</label>
+      <input type="number" id="roundTimeInput" min="10" step="10" value="60" />
+      <button id="startGameBtn">התחל משחק</button>
+      <button id="resetGameBtn" style="background:#555; margin-top:6px;">אפס משחק</button>
+      <button id="pauseBtn" class="pause-btn" style="background:#555; margin-top:6px;">⏸ השהה משחק</button>
+
+    </div>
+
+  </div>
+
+  <div id="winnersOverlay">
+    <h2>עולים לשלב השירים:</h2>
+    <ul id="winnersList"></ul>
+    <p>בשלב זה עליכם לנסות להציג את השיר שבתמונה הבאה-ללא זמזום מנגינה! וללא מילים<br><br> טיפ👌 תנסו להסביר מילה
+      מילה...<br><br> בהצלחה!!</p>
+
+    <button id="continueToSongsBtn">המשך לשלב שירים</button>
+  </div>
+  <div id="songsLevel">
+    <h1>שלב השירים! מתחילים....</h1>
+    <p id="firstOnSongLevel"></p>
+    <button id="startSongsLevel">התחל משחק</button>
+
+  </div>
+  <div id="messageBox" class="hidden"></div>
+
+  <!-- שכבת ההשהיה -->
+  <div id="pauseOverlay" class="pause-overlay hidden">
+    <div class="pause-content">
+      <h1>המשחק מושהה</h1>
+      <button id="resumeBtn" class="resume-btn">▶ המשך משחק</button>
+    </div>
+  </div>
+
+  <audio id="endSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" preload="auto"></audio>
+  <audio id="backgroundMusic" src="./080_Back_To_Brass.mp3" loop preload="auto"></audio>
+  <audio id="songAudio" preload="auto"></audio>
+
+
+  <script type="text/javascript" src="./game.js"></script>
+
+
+</body>
+
+</html>

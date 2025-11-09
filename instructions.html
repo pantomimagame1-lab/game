@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הוראות המשחק</title>
+  <style>
+    body {
+
+      margin: 0;
+
+      font-family: Arial, sans-serif;
+
+      background: linear-gradient(135deg, #071829, #0a1f33);
+
+      color: #e9f2fb;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: flex-start;
+
+      min-height: 100vh;
+
+      padding: 20px;
+
+    }
+
+    .instructions-container {
+
+      max-width: 800px;
+
+      background: rgba(7, 24, 41, 0.95);
+
+      border-radius: 12px;
+
+      padding: 30px;
+
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+
+      text-align: right;
+
+      animation: fadeIn 1s ease forwards;
+
+    }
+
+    h1 {
+
+      font-size: 42px;
+
+      color: #ffcc00;
+
+      text-align: center;
+
+      margin-bottom: 20px;
+
+      animation: glow 2s ease-in-out infinite alternate;
+
+    }
+
+    ol {
+      list-style-type: circle;
+      padding-left: 20px;
+
+      font-size: 20px;
+
+      line-height: 1.6;
+
+    }
+
+    ol li {
+
+      margin: 12px 0;
+
+      opacity: 0;
+
+      transform: translateX(50px);
+
+      animation: slideIn 0.5s forwards;
+
+    }
+
+    /* אנימציות */
+
+    @keyframes glow {
+
+      from {
+        text-shadow: 0 0 8px #ffcc00;
+      }
+
+      to {
+        text-shadow: 0 0 20px #ffe066;
+      }
+
+    }
+
+    @keyframes fadeIn {
+
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+
+    }
+
+    @keyframes slideIn {
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+    }
+
+    /* אנימציה מדורגת לכל שורה */
+
+    ol li:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+
+    ol li:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    ol li:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+
+    ol li:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    ol li:nth-child(5) {
+      animation-delay: 1.5s;
+    }
+
+    ol li:nth-child(6) {
+      animation-delay: 1.8s;
+    }
+
+    ol li:nth-child(7) {
+      animation-delay: 2.1s;
+    }
+
+    ol li:nth-child(8) {
+      animation-delay: 2.4s;
+    }
+
+    ol li:nth-child(9) {
+      animation-delay: 2.7s;
+    }
+
+    /* כפתורים ניווט */
+
+    .buttons {
+
+      margin-top: 30px;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 20px;
+
+    }
+
+    .buttons button {
+
+      padding: 12px 24px;
+
+      font-size: 20px;
+
+      border: none;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-weight: bold;
+
+      background: #f59e0b;
+
+      color: #071829;
+
+      transition: background 0.3s ease;
+
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    }
+
+    .buttons button:hover {
+
+      background: #d48806;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="instructions-container">
+    <h1>הוראות המשחק</h1>
+
+    <ol list-style-type="none">
+      <li>הוסיפו צוותים, מומלץ בין 2–6 צוותים.</li>
+      <li>במהלך הסיבוב, על המסך יופיעו תמונות של חפצים. על כל צוות לנסות להסביר ללא מילים כמה שיותר חפצים.</li>
+      <li>כל צוות בתורו יתחלק: אחד יצפה במסך וינסה להסביר את התמונה המוצגת ללא מילים לבן הזוג שעם הגב למסך.</li>
+      <li>❕שימו לב החפצים הם בדרגות קושי שונות ניתן לבקש מהמפעיל להעביר תמונה אך תפסידו 5 נק'</li>
+      <li>הקליקו <strong>“נכון” ✅</strong> אם הצוות ניחש נכון, או <strong>“עברו” ⏭</strong> אם רוצים לדלג.</li>
+      <li>על כל תשובה נכונה, הזוג מקבל 10 נקודות👏.</li>
+      <li>⌛לאחר סיום הטיימר, יוצגו מספר הנקודות של הזוג הנוכחי, ותעברו לזוג הבא.</li>
+      <li>כאשר מסתיים סיבוב של כל הצוותים, עוברים לשלב השירים, המתאתגר יותר.</li>
+      <li>לשלב השירים יעלו רק 3 הצוותים הטובים ביותר.</li>
+      <li>🔊 ניתן לשמוע את השיר שהצוות ניחש בסוף כל סיבוב של שירים.</li>
+      <li>בהצלחה מקווים שתהנו🫶</li>
+    </ol>
+
+    <div class="buttons">
+      <button onclick="window.location.href='index.html'">חזרה לעמוד הבית</button>
+      <button onclick="window.location.href='game.html'">התחל משחק</button>
+    </div>
+  </div>
+
+  <!-- מוזיקת רקע -->
+  <audio id="bgMusic" src="./audio/background.mp3" autoplay loop></audio>
+
+  <script>
+
+    // אפשר להוסיף אנימציות קלות למעבר בין עמודים
+
+    const audio = document.getElementById('bgMusic');
+
+    audio.volume = 0.15;
+  </script>
+</body>
+
+</html>
