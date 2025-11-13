@@ -25,10 +25,13 @@ const categories = {
     { img: './songs/3.jpg', mp3: './audio/song3.mp3' },
     { img: './songs/4.jpg', mp3: './audio/song4.mp3' },
     { img: './songs/5.jpg', mp3: './audio/song5.mp3' },
-    { img: './songs/6.jpg', mp3: './audio/song6.mp3' }
-  ],
-  animals: [
-    'images/cat.jpg', 'images/dog.jpg', 'images/elephant.jpg', 'images/lion.jpg', 'images/bird.jpg', 'images/fish.jpg'
+    { img: './songs/6.jpg', mp3: './audio/song6.mp3' },
+    { img: './songs/7.jpg', mp3: './audio/song6.mp3' },
+    { img: './songs/8.png', mp3: './audio/song6.mp3' },
+    { img: './songs/9.png', mp3: './audio/song6.mp3' },
+    { img: './songs/10.png', mp3: './audio/song6.mp3' },
+    { img: './songs/11.png', mp3: './audio/song6.mp3' }
+
   ]
 };
 let second = false;
@@ -76,13 +79,15 @@ const resumeBtn = document.getElementById('resumeBtn');
 // הוספת צוותים
 document.addEventListener('DOMContentLoaded', function() {
   const paid = sessionStorage.getItem('paidForGame');
+  console.log(paid);
+  
   if (paid === 'true') {
     // אפשר להמשיך ולהציג את המשחק
     console.log('התשלום מאומת — כאן נטען המשחק');
     // … קוד המשחק …
   } else {
     // אם לא שילם – החזר לדף התשלום
-    window.location.href = 'https://noa-markovitz.github.io/game/payment.html';
+    window.location.href = 'payment.html';
   }
 });
 addTeamBtn.addEventListener('click', () => {
@@ -356,7 +361,7 @@ nextBtn.addEventListener('click', () => {
     const topCount = 1
     const threshold = scores[sorted[topCount - 1]];
     winner = sorted.filter(name => scores[name] >= threshold);
-    localStorage.setItem('winner', winner);
+    sessionStorage.setItem('winner', winner);
     window.href = 'gameOver.html';
     // imageContainer.innerHTML = '<div class="prompt-text">המשחק נגמר</div>';
     nextBtn.disabled = true;
@@ -524,7 +529,7 @@ async function timeOutFun() {
     const topCount = 1
     const threshold = scores[sorted[topCount - 1]];
     winner = sorted.filter(name => scores[name] >= threshold);
-    localStorage.setItem('winner', winner);
+    sessionStorage.setItem('winner', winner);
    window.location.href = "gameOver.html";
     nextBtn.disabled = true;
     correctBtn.disabled = true;
