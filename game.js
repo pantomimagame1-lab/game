@@ -18,6 +18,7 @@ const categories = {
     './images/73.jpg', './images/74.jpg', './images/75.jpg', './images/76.jpg', './images/77.jpg', './images/78.jpg',
     './images/79.jpg', './images/80.jpg', './images/81.jpg', './images/82.jpg', './images/83.jpg', './images/84.jpg',
     './images/85.jpg', './images/86.jpg', './images/87.jpg', './images/88.jpg', './images/89.jpg', './images/90.jpg',
+    './images/91.png','./images/92.png','./images/93.png','./images/94.png','./images/95.png',
   ],
   songs: [
     { img: './songs/1.jpg', mp3: './audio/song1.mp3' },

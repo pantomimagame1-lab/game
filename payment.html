@@ -91,7 +91,7 @@
 
     <div class="price" aria-hidden="false">
       <div class="left">
-        <div class="amount">₪2.00</div>
+        <div class="amount">₪50.00</div>
         <div class="meta">תשלום חד-פעמי — קבלת גישה למשחק</div>
       </div>
       <div style="text-align:left">
@@ -120,14 +120,13 @@
   <script>
  
     // הגדרות — החליפי לפי הצורך
-    const AMOUNT = '2.00'; // סכום בשקלים
+    const AMOUNT = '50.00'; // סכום בשקלים
     const CURRENCY = 'ILS';
     const GAME_URL = 'game.html'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
     const SUPPORT_EMAIL = 'pantomimagame1@gmail.com';
    if (sessionStorage.getItem('paidForGame') === 'true') {
-    console.log("i pay");
     
-  window.location.href = GAME_URL;
+    window.location.href = GAME_URL;
 }
     // הצגת המייל באופן דינמי
     document.getElementById('supportEmail').href = 'mailto:' + SUPPORT_EMAIL;
@@ -164,7 +163,7 @@
           // ניתן להעביר פרמטרים ב-querystring אם צריך (למשל: orderID)
           const orderId = data.orderID;
             sessionStorage.setItem('paidForGame', 'true');
-    sessionStorage.setItem('orderID', data.orderID);
+            sessionStorage.setItem('orderID', data.orderID);
           // מפנה לדף המשחק עם מזהה הזמנה (לשימוש עתידי)
           window.location.href = GAME_URL;
         }).catch(function(err) {
