@@ -442,18 +442,17 @@ async function timeOutFun() {
     return;
   }
   currentTeamIndex++;
-  if (phase === 'objects' && currentTeamIndex >= teams.length && !second) {
+  if (phase === 'objects' && currentTeamIndex >= teams.length) {
     nextlevel.style.display = 'flex';
     await new Promise(r => setTimeout(r, 20000))
     nextlevel.style.display = 'none';
 
     currentTeamIndex = 0;
-    second = true;
   }
   // currentItemIndex = 0;
 
   // אם נגמרו הזוגות בשלבי חפצים, מציגים זכייה והמשך לשלב שירים
-  if (phase === 'objects' && currentTeamIndex >= teams.length && second) {
+  if (phase === 'objects' && currentTeamIndex >= teams.length) {
     showWinnersOverlay();
     return;
   }
