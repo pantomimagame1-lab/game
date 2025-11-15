@@ -82,6 +82,7 @@ const startSongsLevel = document.getElementById('startSongsLevel');
 const pauseBtn = document.getElementById('pauseBtn');
 const pauseOverlay = document.getElementById('pauseOverlay');
 const resumeBtn = document.getElementById('resumeBtn');
+const pauseAudio = document.getElementById('pauseAudio');
 // הוספת צוותים
 document.addEventListener('DOMContentLoaded', function() {
   const paid = sessionStorage.getItem('paidForGame');
@@ -132,7 +133,7 @@ window.removeTeam = function (i) {
 
 // הפעלת מוזיקת רקע שקטה בלולאה
 // backgroundMusic.volume = 0.15;
-backgroundMusic.play().catch(() => { /* יתכן שנדרש אינטראקציה לפני הפעלת אודיו */ });
+backgroundMusic.play().catch(() => {  });
 
 startGameBtn.addEventListener('click', () => {
   if (teams.length === 0) {
@@ -248,9 +249,9 @@ function showCurrentItem() {
     promptText.textContent = `שיר ${currentItemIndex + 1} מתוך ${currentItems.length}`;
 
     // playSongBtn.style.display = 'none'; // יופיע אחרי לחיצה על נכון
-    songAudio.pause();
-    songAudio.currentTime = 0;
-    songAudio.src = item.mp3;
+    // songAudio.pause();
+    // songAudio.currentTime = 0;
+    // songAudio.src = item.mp3;
   } else {
     // חפצים או בעלי חיים - הצגת תמונה בלבד
     const img = document.createElement('img');
@@ -487,7 +488,9 @@ startSongsLevel.addEventListener('click', () => {
 
 
 });
-
+pauseAudio.addEventListener('click',()=>{
+  backgroundMusic.pause();
+})
 // פונקציה לעדכון זמן סיבוב מהקלט
 roundTimeInput.addEventListener('change', () => {
   const val = Number(roundTimeInput.value);
