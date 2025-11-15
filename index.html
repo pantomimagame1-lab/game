@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>משחק פנטומימה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Assistant', sans-serif;
+      background: radial-gradient(circle at top left, #ffdde1, #ee9ca7, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: #222;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    /* כפתור זז שמושך תשומת לב */
+    #tryDemoBtn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: linear-gradient(90deg, #ff7b00, #ffb347);
+      color: white;
+      border-radius: 50px;
+      padding: 15px 25px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s infinite ease-in-out;
+      cursor: pointer;
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    header {
+      padding: 50px 20px 30px;
+      animation: fadeInDown 1.5s ease;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      color: #3c2fc9;
+      margin-bottom: 10px;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+      letter-spacing: 1px;
+    }
+
+    p.subtitle {
+      font-size: 2rem;
+      color: #6d5cff;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      font-size: 1.6rem;
+      color: #333;
+      margin-bottom: 60px;
+      animation: fadeIn 2s ease;
+    }
+
+    .floating-icons span {
+      position: absolute;
+      display: block;
+      font-size: 3rem;
+      opacity: 0.15;
+      animation: float 10s infinite ease-in-out;
+    }
+
+    .floating-icons {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      30% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .video-container {
+      margin: 30px auto;
+      max-width: 700px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
+      animation: fadeInUp 1.5s ease;
+    }
+
+    video {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
+    .buttons {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 15px 45px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 20px rgba(229, 46, 113, 0.4);
+      animation: bounceIn 2s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 25px rgba(255, 120, 80, 0.5);
+    }
+
+    /* כפתור זז ומושך עין */
+    .btn-demo {
+      background: linear-gradient(90deg, #00c9ff, #92fe9d);
+      position: relative;
+      animation: pulse 2s infinite, floatButton 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 201, 255, 0.6);
+      }
+
+      70% {
+        box-shadow: 0 0 0 20px rgba(0, 201, 255, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 201, 255, 0);
+      }
+    }
+
+    @keyframes floatButton {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 20px;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+
+      60% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <audio id="bgAudio" src="./start.mp3" loop preload="auto"></audio>
+
+  <div class="floating-icons">
+    <span style="left:5%; animation-delay:0s;">🎭</span>
+    <span style="left:20%; animation-delay:2s;">🎉</span>
+    <span style="left:40%; animation-delay:4s;">😂</span>
+    <span style="left:60%; animation-delay:6s;">🎬</span>
+    <span style="left:80%; animation-delay:8s;">🤩</span>
+  </div>
+
+  <header>
+    <h1>ברוכים הבאים למשחק פנטומימה!</h1>
+    <p class="subtitle">חוויה מצחיקה, מגבשת ובלתי נשכחת 🎭</p>
+    <p class="tagline">בלי מילים — רק תנועות והבעות! מי ינחש ראשון?</p>
+  </header>
+
+  <div class="video-container">
+    <video src="game_speed.mp4" controls autoplay muted loop></video>
+  </div>
+ <div id="tryDemoBtn" onclick="window.location.href='demo-game.html'">
+      🔥 נסה משחק לדוגמה
+    </div>
+  <div class="buttons">
+    <button class="btn" onclick="window.location.href='instructions.html'">📘 הוראות המשחק</button>
+    <button class="btn" onclick="window.location.href='payment.html'">🎮 התחל לשחק עכשיו!</button>
+   
+  </div>
+
+  <footer>
+    <p>© משחק פנטומימה | כל הזכויות שמורות</p>
+  </footer>
+
+  <script>
+    const audio = document.getElementById('bgAudio');
+    audio.play().catch(() => {
+      const btn = document.createElement('button');
+      btn.textContent = 'לחצו להשמיע מוזיקה 🎵';
+      btn.style.cssText = 'position:fixed;bottom:20px;right:20px;padding:12px 15px;font-size:16px;border:none;border-radius:12px;background:#6d5cff;color:#fff;z-index:9999;';
+      btn.onclick = () => {
+        audio.play();
+        btn.remove();
+      };
+      document.body.appendChild(btn);
+    });
+  </script>
+</body>
+
+</html>
