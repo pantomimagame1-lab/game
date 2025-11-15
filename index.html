@@ -18,6 +18,22 @@
       text-align: center;
     }
 
+    /* כפתור זז שמושך תשומת לב */
+    #tryDemoBtn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: linear-gradient(90deg, #ff7b00, #ffb347);
+      color: white;
+      border-radius: 50px;
+      padding: 15px 25px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s infinite ease-in-out;
+      cursor: pointer;
+    }
+
     @keyframes gradientShift {
       0% {
         background-position: 0% 50%;
@@ -154,6 +170,7 @@
     }
 
     @keyframes floatButton {
+
       0%,
       100% {
         transform: translateY(0);
@@ -243,11 +260,13 @@
   <div class="video-container">
     <video src="game_speed.mp4" controls autoplay muted loop></video>
   </div>
-
+ <div id="tryDemoBtn" onclick="window.location.href='demo-game.html'">
+      🔥 נסה משחק לדוגמה
+    </div>
   <div class="buttons">
     <button class="btn" onclick="window.location.href='instructions.html'">📘 הוראות המשחק</button>
     <button class="btn" onclick="window.location.href='payment.html'">🎮 התחל לשחק עכשיו!</button>
-    <button class="btn btn-demo" onclick="window.location.href='demo-game.html'">🎯 נסה משחק לדוגמה</button>
+   
   </div>
 
   <footer>

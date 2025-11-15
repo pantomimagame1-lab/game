@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>משחק פנטומימה - גרסת דמו</title>
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./game.css">
 
   <style>
-    body {
+    /* body {
       margin: 0;
       font-family: 'Assistant', sans-serif;
       background: linear-gradient(135deg, #d6e2ff, #f1e4ff, #e4f1ff);
@@ -15,10 +17,10 @@
       text-align: center;
       overflow-x: hidden;
       animation: fadeIn 1.2s ease;
-    }
+    } */
 
     header {
-      padding: 20px;
+      /* padding: 20px; */
       background: linear-gradient(90deg, #5c4fc1, #7b68ee);
       color: white;
       font-weight: bold;
@@ -26,10 +28,17 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      margin-right: 18%;
+      width: 60%;
+      min-width: fit-content;
+
+      #text {
+        align-self: flex-end;
+      }
     }
 
-    h1 {
+    /* h1 {
       font-size: 2.8rem;
       color: #4a3dbf;
       margin: 30px 0 10px;
@@ -38,9 +47,9 @@
     p {
       font-size: 1.3rem;
       color: #555;
-    }
+    } */
 
-    #gameContainer {
+    /* #gameContainer {
       margin: 40px auto;
       max-width: 600px;
       background: white;
@@ -48,9 +57,9 @@
       padding: 20px;
       box-shadow: 0 0 25px rgba(74, 61, 191, 0.3);
       animation: fadeInUp 1s ease;
-    }
+    } */
 
-    img {
+    /* img {
       width: 100%;
       border-radius: 20px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
@@ -69,7 +78,7 @@
       transition: all 0.3s ease;
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
       margin: 10px;
-    }
+    } */
 
     button:hover {
       transform: translateY(-4px);
@@ -84,70 +93,198 @@
     }
 
     #demoEnd {
-      display: none;
+      display: flex;
       animation: fadeIn 1s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* כפתור זז שמושך תשומת לב */
-    #tryDemoBtn {
+    #playNowDiv {
+      display: flex;
+      flex-direction: row;
       position: fixed;
-      bottom: 30px;
+      bottom: 0;
       left: 30px;
-      background: linear-gradient(90deg, #ff7b00, #ffb347);
+      /* background: linear-gradient(90deg, #ff7b00, #ffb347); */
       color: white;
-      border-radius: 50px;
+      /* border-radius: 50px; */
       padding: 15px 25px;
       font-weight: bold;
       font-size: 1.2rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      animation: pulse 2s infinite ease-in-out;
+      /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); */
+      animation: pulse 10s infinite ease-in-out;
       cursor: pointer;
+      #text{
+        margin-left: 46%;
+      }
+      #playNow {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background: linear-gradient(90deg, #ff7b00, #ffb347);
+        color: white;
+        border-radius: 50px;
+        padding: 15px 25px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        animation: pulse 2s infinite ease-in-out;
+        cursor: pointer;
+      }
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    #messageBox {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(40, 40, 40, 0.9);
+      color: #fff;
+      font-family: 'Assistant', sans-serif;
+      font-size: 1.1rem;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    #messageBox.show {
+      opacity: 1;
+    }
+
+    #messageBox.success {
+      background: linear-gradient(90deg, #28a745, #34ce57);
+    }
+
+    #messageBox.error {
+      background: linear-gradient(90deg, #c0392b, #e74c3c);
+    }
+
+    #messageBox.info {
+      background: linear-gradient(90deg, #2980b9, #3498db);
     }
   </style>
 </head>
 
 <body>
-  <header>⚠️ משחק לדוגמה בלבד</header>
+  <header>
+    <p id="text">⚠️ משחק לדוגמה בלבד</p>
+    <div id="title">
+      <p>הכירו את המשחק בצורה חווייתית – 5 תמונות לדוגמה בלבד!</p>
+    </div>
+  </header>
 
-  <h1>ברוכים הבאים לגרסת הדמו 🎭</h1>
-  <p>הכירו את המשחק בצורה חווייתית – 5 תמונות לדוגמה בלבד!</p>
 
-  <div id="gameContainer">
-    <img id="demoImage" src="demo1.jpg" alt="תמונה לדוגמה">
-    <div>
-      <button id="nextBtn">תמונה הבאה ▶️</button>
+  <!-- כותרת למעלה לשם הזוג -->
+  <h1 id="currentTeamHeader" style="text-align:center; font-size: 3rem; margin-top: 10px; display: none;"></h1>
+
+  <!-- שכבה למעבר בין זוגות -->
+  <div id="nextTeamOverlay">
+    <div id="previous-score" class="previous-score" style="font-size: 22px; margin-top: 15px; color: #fff;"></div>
+    <h2 id="nextTeamName" style="font-size: 3rem; animation: fadeIn 1s ease;"></h2>
+    <button id="startNextTeamBtn">התחל
+      משחק</button>
+  </div>
+  <div class="container" id="mainGameContainer">
+    <div class="left-panel">
+      <div class="image-container" id="imageContainer">
+        <div class="prompt-text" id="promptText">הוסף צוותים, בחר נושא והתחל משחק</div>
+      </div>
+      <!-- <div id="timeOut">
+        <h2 id="timeOutText" style="font-size: 3rem; animation: fadeIn 1s ease;">Time Out / הזמן נגמר!</h2>
+      </div> -->
+      <div class="timer-vertical">
+        <div class="timer-fill" id="timerFill"></div>
+      </div>
+      <div class="controls">
+        <button id="correctBtn" disabled>נכון ✅</button>
+        <button id="passBtn" disabled>עברו ⏭</button>
+        <button id="nextBtn" disabled>זוג הבא ▶️</button>
+        <button id="playSongBtn" style="display:none;">הפעל שיר ▶️</button>
+      </div>
+    </div>
+    <div class="right-panel">
+      <h2>ניהול צוותים</h2>
+      <input type="text" id="teamNameInput" placeholder="שם צוות חדש..." />
+      <button id="addTeamBtn">הוסף צוות</button>
+      <div class="teams-list" id="teamsList"></div>
+
+      <!-- <label for="categorySelect">בחר נושא:</label> -->
+      <select id="categorySelect" disabled="true">
+        <option value="objects" selected>חפצים</option>
+        <option value="songs">שירים</option>
+      </select>
+
+      <label for="roundTimeInput">זמן לסיבוב (בשניות):</label>
+      <input type="number" id="roundTimeInput" min="10" step="10" value="60" />
+      <button id="startGameBtn">התחל משחק</button>
+      <button id="resetGameBtn" style="background:#555; margin-top:6px;">אפס משחק</button>
+      <button id="pauseBtn" class="pause-btn" style="background:#555; margin-top:6px;">⏸ השהה משחק</button>
+
+    </div>
+
+  </div>
+  <div id="messageBox" class="hidden"></div>
+
+  <!-- שכבת ההשהיה -->
+  <div id="pauseOverlay" class="pause-overlay hidden">
+    <div class="pause-content">
+      <h1>המשחק מושהה</h1>
+      <button id="resumeBtn" class="resume-btn">▶ המשך משחק</button>
     </div>
   </div>
-
-  <div id="demoEnd">
-    <h2>🎉 סיימת את המשחק לדוגמה!</h2>
-    <p>רוצה לנסות את הגרסה המלאה עם עשרות תמונות ואתגרים?</p>
-    <button onclick="window.location.href='game.html'">🎮 שחק עכשיו</button>
+  <div id="playNowDiv">
+    <p id="text">רוצה לנסות את הגרסה המלאה עם עשרות תמונות ואתגרים?</p>
+    <div id="playNow" onclick="window.location.href='game.html'">
+      🎮 שחק עכשיו
+    </div>
   </div>
 
   <footer>
     © כל הזכויות שמורות | משחק פנטומימה חוויתי
   </footer>
 
-  <div id="tryDemoBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <!-- <div id="tryDemoBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
     🔥 נסה משחק לדוגמה
-  </div>
-
+  </div> -->
+  <audio id="endSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" preload="auto"></audio>
+  <audio id="backgroundMusic" src="./080_Back_To_Brass.mp3" loop preload="auto"></audio>
+  <audio id="songAudio" preload="auto"></audio>
   <script src="demo-game.js"></script>
 </body>
+
 </html>

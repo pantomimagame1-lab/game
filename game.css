@@ -334,7 +334,13 @@ label {
   cursor: pointer;
   width: fit-content;
 }
-
+#startNextTeamBtn2 {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: fit-content;
+}
 #startSongsLevel {
   width: fit-content;
   height: 2rem;

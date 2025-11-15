@@ -30,7 +30,12 @@ const categories = {
     { img: './songs/8.png', mp3: './audio/song6.mp3' },
     { img: './songs/9.png', mp3: './audio/song6.mp3' },
     { img: './songs/10.png', mp3: './audio/song6.mp3' },
-    { img: './songs/11.png', mp3: './audio/song6.mp3' }
+    { img: './songs/11.png', mp3: './audio/song6.mp3' },
+    { img: './songs/12.png', mp3: './audio/song6.mp3' },
+    { img: './songs/13.png', mp3: './audio/song6.mp3' },
+    { img: './songs/14.png', mp3: './audio/song6.mp3' },
+    { img: './songs/15.png', mp3: './audio/song6.mp3' },
+    { img: './songs/16.png', mp3: './audio/song6.mp3' }
 
   ]
 };
@@ -61,7 +66,7 @@ const promptText = document.getElementById('promptText');
 const correctBtn = document.getElementById('correctBtn');
 const passBtn = document.getElementById('passBtn');
 const nextBtn = document.getElementById('nextBtn');
-const playSongBtn = document.getElementById('playSongBtn');
+// const playSongBtn = document.getElementById('playSongBtn');
 const timerFill = document.getElementById('timerFill');
 const endSound = document.getElementById('endSound');
 const winnersOverlay = document.getElementById('winnersOverlay');
@@ -161,7 +166,7 @@ startGameBtn.addEventListener('click', () => {
   nextBtn.disabled = true;
   correctBtn.disabled = false;
   passBtn.disabled = false;
-  playSongBtn.style.display = 'none'; // לא בשלב חפצים
+  // playSongBtn.style.display = 'none'; // לא בשלב חפצים
 
 });
 
@@ -186,7 +191,7 @@ resetGameBtn.addEventListener('click', () => {
   nextBtn.disabled = true;
   correctBtn.disabled = true;
   passBtn.disabled = true;
-  playSongBtn.style.display = 'none';
+  // playSongBtn.style.display = 'none';
 
   winnersOverlay.classList.remove('show');
   mainGameContainer.style.display = 'flex';
@@ -223,7 +228,7 @@ function showCurrentItem() {
     promptText.textContent = 'אין פריטים להצגה';
     correctBtn.disabled = true;
     passBtn.disabled = true;
-    playSongBtn.style.display = 'none';
+    // playSongBtn.style.display = 'none';
     return;
   }
 
@@ -241,7 +246,7 @@ function showCurrentItem() {
     imageContainer.appendChild(img);
     promptText.textContent = `שיר ${currentItemIndex + 1} מתוך ${currentItems.length}`;
 
-    playSongBtn.style.display = 'none'; // יופיע אחרי לחיצה על נכון
+    // playSongBtn.style.display = 'none'; // יופיע אחרי לחיצה על נכון
     songAudio.pause();
     songAudio.currentTime = 0;
     songAudio.src = item.mp3;
@@ -253,7 +258,7 @@ function showCurrentItem() {
     imageContainer.appendChild(img);
     promptText.textContent = `פריט ${currentItemIndex + 1} מתוך ${currentItems.length}`;
 
-    playSongBtn.style.display = 'none';
+    // playSongBtn.style.display = 'none';
   }
 
   // הפעלת כפתורים
@@ -303,7 +308,7 @@ correctBtn.addEventListener('click', () => {
     correctBtn.disabled = true;
     passBtn.disabled = true;
     nextBtn.disabled = false;
-    playSongBtn.disabled = (phase !== 'songs');
+    // playSongBtn.disabled = (phase !== 'songs');
     showMessage('הגעתם לסוף הסבב!', 'success');
   } else {
     showCurrentItem();
@@ -314,8 +319,8 @@ correctBtn.addEventListener('click', () => {
 
   // בשלב השירים, להפעיל כפתור הפעל שיר אחרי "נכון"
   if (phase === 'songs') {
-    playSongBtn.style.display = 'inline-block';
-    playSongBtn.disabled = false;
+    // playSongBtn.style.display = 'inline-block';
+    // playSongBtn.disabled = false;
   }
 });
 
@@ -329,7 +334,7 @@ passBtn.addEventListener('click', () => {
     correctBtn.disabled = true;
     passBtn.disabled = true;
     nextBtn.disabled = false;
-    playSongBtn.style.display = 'none';
+    // playSongBtn.style.display = 'none';
   }
   else {
     showCurrentItem();
@@ -367,7 +372,7 @@ nextBtn.addEventListener('click', () => {
     nextBtn.disabled = true;
     correctBtn.disabled = true;
     passBtn.disabled = true;
-    playSongBtn.style.display = 'none';
+    // playSongBtn.style.display = 'none';
     return;
   }
 
@@ -379,7 +384,7 @@ nextBtn.addEventListener('click', () => {
     correctBtn.disabled = true;
     passBtn.disabled = true;
     nextBtn.disabled = false;
-    playSongBtn.style.display = 'none';
+    // playSongBtn.style.display = 'none';
     return;
   }
 
@@ -390,15 +395,15 @@ nextBtn.addEventListener('click', () => {
   correctBtn.disabled = false;
   passBtn.disabled = false;
   nextBtn.disabled = true;
-  playSongBtn.style.display = 'none';
+  // playSongBtn.style.display = 'none';
 
 });
 
 // כפתור הפעלת שיר בשלב השירים
-playSongBtn.addEventListener('click', () => {
-  if (!gameStarted || phase !== 'songs') return;
-  songAudio.play();
-});
+// playSongBtn.addEventListener('click', () => {
+//   if (!gameStarted || phase !== 'songs') return;
+//   songAudio.play();
+// });
 
 // הצגת הזוכים בסיום שלב חפצים והמשך לשלב שירים
 function showWinnersOverlay() {
@@ -408,7 +413,7 @@ function showWinnersOverlay() {
   nextBtn.disabled = true;
   correctBtn.disabled = true;
   passBtn.disabled = true;
-  playSongBtn.style.display = 'none';
+  // playSongBtn.style.display = 'none';
 
   // מציגים הזוכים לפי ניקוד גבוה ביותר
   var winners;
@@ -455,14 +460,14 @@ continueToSongsBtn.addEventListener('click', () => {
   correctBtn.disabled = false;
   passBtn.disabled = false;
   nextBtn.disabled = true;
-  playSongBtn.style.display = 'none';
+  // playSongBtn.style.display = 'none';
   timerFill.style.height = '100%';
   // imageContainer.innerHTML = '<div class="prompt-text">התחל משחק</div>';
   // teamsListDiv.innerHTML = '';
   nextBtn.disabled = true;
   correctBtn.disabled = false;
   passBtn.disabled = false;
-  playSongBtn.style.display = 'none';
+  // playSongBtn.style.display = 'none';
 
   // winnersOverlay.classList.remove('show');
   // mainGameContainer.style.display = 'flex';
@@ -493,7 +498,7 @@ roundTimeInput.addEventListener('change', () => {
 const header = document.getElementById('currentTeamHeader');
 const nextTeamOverlay = document.getElementById('nextTeamOverlay');
 const nextlevel = document.getElementById('nextlevel');
-
+const startNextTeamBtn2 = document.getElementById('startNextTeamBtn2');
 const nextTeamName = document.getElementById('nextTeamName');
 const startNextTeamBtn = document.getElementById('startNextTeamBtn');
 const timeOut = document.getElementById('timeOut');
@@ -508,12 +513,14 @@ async function timeOutFun() {
   currentTeamIndex++;
   if (phase === 'objects' &&currentTeamIndex >= teams.length && !second) {
     nextlevel.style.display = 'flex';
-    await new Promise(r => setTimeout(r, 20000))
-        nextlevel.style.display = 'none';
+    // await new Promise(r => setTimeout(r, 20000))
+    //     nextlevel.style.display = 'none';
 
     currentTeamIndex = 0;
     second = true;
+    return;
   }
+
   // currentItemIndex = 0;
 
   // אם נגמרו הזוגות בשלבי חפצים, מציגים זכייה והמשך לשלב שירים
@@ -534,7 +541,7 @@ async function timeOutFun() {
     nextBtn.disabled = true;
     correctBtn.disabled = true;
     passBtn.disabled = true;
-    playSongBtn.style.display = 'none';
+    // playSongBtn.style.display = 'none';
     return;
   }
 
@@ -546,7 +553,7 @@ async function timeOutFun() {
     correctBtn.disabled = true;
     passBtn.disabled = true;
     nextBtn.disabled = false;
-    playSongBtn.style.display = 'none';
+    // playSongBtn.style.display = 'none';
     return;
   }
 
@@ -557,7 +564,7 @@ async function timeOutFun() {
   correctBtn.disabled = false;
   passBtn.disabled = false;
   nextBtn.disabled = true;
-  playSongBtn.style.display = 'none';
+  // playSongBtn.style.display = 'none';
 
 };
 // מציג את שם הצוות הנוכחי למעלה
@@ -590,7 +597,29 @@ function showNextTeamOverlay() {
 
 
 
+startNextTeamBtn2.addEventListener('click', () => {
+   nextlevel.style.display = 'none';
 
+  // טוענים את הפריטים שנותרו עבור הזוג הבא
+  prepareItems();
+
+  if (currentItems.length === 0) {
+    showMessage('אין פריטים חדשים להציג לזוג הבא.', 'error');
+    correctBtn.disabled = true;
+    passBtn.disabled = true;
+    nextBtn.disabled = false;
+    // playSongBtn.style.display = 'none';
+    return;
+  }
+
+  // showCurrentItem();
+  renderTeams();
+  prepareNextTeam();
+
+  correctBtn.disabled = false;
+  passBtn.disabled = false;
+  nextBtn.disabled = true;
+});
 
 // כשהמנהל לוחץ "התחל משחק" לזוג הבא
 startNextTeamBtn.addEventListener('click', () => {
@@ -660,7 +689,7 @@ function startTimer() {
         correctBtn.disabled = true;
         passBtn.disabled = true;
         nextBtn.disabled = false;
-        playSongBtn.disabled = true;
+        // playSongBtn.disabled = true;
         timeLeft = 0;
         timeOutFun();
       }
