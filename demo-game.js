@@ -146,7 +146,7 @@ resetGameBtn.addEventListener('click', () => {
   currentTeamIndex = 0;
   currentItemIndex = 0;
   timeLeft = 0;
-  roundTime = 60;
+  roundTime = 10;
   shownItems.clear();
 
   timerFill.style.height = '100%';
